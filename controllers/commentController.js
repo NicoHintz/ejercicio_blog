@@ -8,9 +8,6 @@ async function getComments(req, res) {
 
 async function createComment(req, res) {
   const user = await User.findOne({ where: { firstname: req.body.firstname } });
-  // console.log(user);
-  // console.log("USER NAME:  " + user.firstname);
-  // console.log("USER ID:  " + user.id);
   let articleNumber = req.params.id;
   const newComment = await Comment.create({
     content: `${req.body.content}`,
