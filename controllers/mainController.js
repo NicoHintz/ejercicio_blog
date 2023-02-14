@@ -1,10 +1,12 @@
 const { Sequelize } = require("sequelize");
 const { Article, User, Comment } = require("../models");
+const formidable = require("formidable");
 
 // const { User } = require("../models");
 
 async function index(req, res) {
   const articles = await Article.findAll({ include: User });
+
   return res.render("home", { articles });
 }
 
@@ -18,6 +20,7 @@ async function selectArticle(req, res) {
 
 async function indexAdmin(req, res) {
   const articles = await Article.findAll({ include: User });
+  console.log(articles[0].image);
   return res.render("admin", { articles });
 }
 
@@ -27,18 +30,22 @@ async function createForm(req, res) {
 }
 
 async function createArticle(req, res) {
-  const newArticle = await Article.create({
-    title: `${req.body.title}`,
-    content: `${req.body.content}`,
-    date: {
-      type: Sequelize.DATE,
-      field: "created_at",
-    },
-    image: `${req.body.image}`,
-    author: `${req.body.author}`,
-    userId: 1,
+  const form = formidable({
+    multiples: true,
+    uploadDir: __dirname + "/../public/img",
+    keepExtensions: true,
   });
-  return res.redirect("/admin");
+  form.parse(req, async (err, fields, files) => {
+    const newArticle = await Article.create({
+      title: fields.title,
+      content: fields.content,
+      author: fields.author,
+      image: files.image.newFilename,
+      userId: 1,
+    });
+
+    return res.redirect("/admin");
+  });
 }
 
 async function editForm(req, res) {

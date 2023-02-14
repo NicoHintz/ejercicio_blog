@@ -15,7 +15,7 @@
     <%- include("partials/nav") %>
     <div class="container">
       <h2>Crear nuevo articulo</h2>
-      <form method="post" action="/admin">
+      <form method="post" action="/admin" enctype="multipart/form-data">
         <div class="mb-3">
           <label for="title" class="form-label">Titulo</label>
           <input
@@ -32,9 +32,9 @@
           <textarea class="form-control" id="content" rows="3" name="content"></textarea>
         </div>
         <div class="mb-3">
-          <label for="image" class="form-label">Imagen</label>
+          <label for="image" class="form-label">Selecionar una imagen</label>
           <input
-            type="text"
+            type="file"
             name="image"
             class="form-control"
             id="image"

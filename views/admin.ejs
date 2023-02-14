@@ -38,7 +38,18 @@
             <td><%= element.id %></td>
             <td><%= element.title %></td>
             <td><%= element.content %></td>
-            <td><%= %></td>
+            <% if(element.image.includes("http")){%>
+            <td><img src="<%=element.image %>" alt="" /></td>
+            <%}else {%>
+
+            <td>
+              <img
+                style="max-width: 250px; max-height: 250px"
+                src="/img/<%=element.image %>"
+                alt=""
+              />
+            </td>
+            <%} %>
             <td><%= element.createdAt %></td>
             <td><%= element.user.firstname %> <%= element.user.lastname %></td>
             <td>
