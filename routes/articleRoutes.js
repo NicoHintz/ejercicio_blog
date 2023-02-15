@@ -5,15 +5,17 @@ const commentController = require("../controllers/commentController");
 const userController = require("../controllers/userController");
 const loginController = require("../controllers/loginController");
 const { isAuthenticated } = require("../middlewares/isAuthenticated");
+const { commentAuthenticate } = require("../middlewares/isAuthenticated");
 
-// Intentando hacer login //
 router.get("/login", loginController.loginIndex);
 router.post("/login", loginController.login);
-// Intentando hacer login //
 
 router.get("/", mainController.index);
 router.get("/articulo/:id", mainController.selectArticle);
-router.post("/articulo/:id", commentController.createComment);
+
+// AuTH COMMENTS
+router.post("/articulo/:id", commentAuthenticate, commentController.createComment);
+//AUTH COMMENTS
 
 router.get("/admin", isAuthenticated, mainController.indexAdmin);
 router.get("/admin/crear", isAuthenticated, mainController.createForm);

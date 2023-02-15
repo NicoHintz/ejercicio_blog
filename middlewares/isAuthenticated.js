@@ -9,6 +9,15 @@ async function isAuthenticated(req, res, next) {
   }
 }
 
+async function commentAuthenticate(req, res, next) {
+  if (req.isAuthenticated()) {
+    next();
+  } else {
+    next();
+  }
+}
+
 module.exports = {
   isAuthenticated,
+  commentAuthenticate,
 };
