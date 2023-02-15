@@ -7,7 +7,7 @@ async function loginIndex(req, res) {
 }
 
 const login = passport.authenticate("local", {
-  successRedirect: "/admin",
+  successRedirect: "/",
   failureRedirect: "/login",
 });
 

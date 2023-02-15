@@ -16,13 +16,9 @@ async function selectArticle(req, res) {
 }
 
 async function indexAdmin(req, res) {
-  if (req.isAuthenticated()) {
-    const articles = await Article.findAll({ include: User });
+  const articles = await Article.findAll({ include: User });
 
-    return res.render("admin", { articles });
-  } else {
-    res.redirect("/login");
-  }
+  return res.render("admin", { articles });
 }
 
 async function createForm(req, res) {
@@ -37,12 +33,13 @@ async function createArticle(req, res) {
     keepExtensions: true,
   });
   form.parse(req, async (err, fields, files) => {
+    console.log(req.user);
     const newArticle = await Article.create({
       title: fields.title,
       content: fields.content,
       author: fields.author,
       image: files.image.newFilename,
-      userId: 1,
+      userId: req.user.id,
     });
 
     return res.redirect("/admin");
