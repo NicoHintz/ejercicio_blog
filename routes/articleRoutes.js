@@ -7,7 +7,7 @@ const loginController = require("../controllers/loginController");
 
 // Intentando hacer login //
 router.get("/login", loginController.loginIndex);
-router.post("/login", loginController.loginForm);
+router.post("/login", loginController.login);
 // Intentando hacer login //
 
 router.get("/", mainController.index);
