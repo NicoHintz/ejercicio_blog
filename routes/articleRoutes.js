@@ -3,6 +3,12 @@ const router = express.Router();
 const mainController = require("../controllers/mainController");
 const commentController = require("../controllers/commentController");
 const userController = require("../controllers/userController");
+const loginController = require("../controllers/loginController");
+
+// Intentando hacer login //
+router.get("/login", loginController.loginIndex);
+router.post("/login", loginController.loginForm);
+// Intentando hacer login //
 
 router.get("/", mainController.index);
 router.get("/articulo/:id", mainController.selectArticle);

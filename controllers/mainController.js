@@ -17,7 +17,7 @@ async function selectArticle(req, res) {
 
 async function indexAdmin(req, res) {
   const articles = await Article.findAll({ include: User });
-  console.log(articles[0].image);
+
   return res.render("admin", { articles });
 }
 

@@ -19,6 +19,7 @@
   "homepage": "https://github.com/CristRM27/ejercicio_blog#readme",
   "dependencies": {
     "@faker-js/faker": "^7.6.0",
+    "bcryptjs": "^2.4.3",
     "dotenv": "^16.0.3",
     "ejs": "^3.1.8",
     "express": "^4.18.2",
