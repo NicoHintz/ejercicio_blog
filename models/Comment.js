@@ -12,6 +12,9 @@ class Comment extends Model {
         content: {
           type: DataTypes.TEXT,
         },
+        author: {
+          type: DataTypes.TEXT,
+        },
       },
       {
         sequelize,

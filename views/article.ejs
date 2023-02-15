@@ -50,12 +50,17 @@
       <h2 class="mt-4">Comments(<%= commentCounter %>)</h2>
       <hr />
     </div>
+
     <div class="container">
       <% comments.reverse() %> <% comments.forEach((element) => { %>
       <p><%= element.content %></p>
-      <p>by <%= element.user.firstname %> <%= element.user.lastname %></p>
+      <% if (!element.user){%>
+      <p>by <%= element.author %></p>
       <hr />
-      <% }) %>
+      <% } else { %>
+      <p>by <%= element.user.username %></p>
+      <hr />
+      <% } %> <% }) %>
     </div>
 
     <div><%- include("partials/footer") %></div>

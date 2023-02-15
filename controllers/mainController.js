@@ -33,7 +33,6 @@ async function createArticle(req, res) {
     keepExtensions: true,
   });
   form.parse(req, async (err, fields, files) => {
-    console.log(req.user);
     const newArticle = await Article.create({
       title: fields.title,
       content: fields.content,
