@@ -12,7 +12,7 @@ const LocalStrategy = require("passport-local");
 const { User } = require("./models");
 const bcrypt = require("bcryptjs");
 
-app.use(session({ secret: "AlgúnTextoSuperSecreto", resave: false, saveUninitialized: false }));
+app.use(session({ secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: false }));
 app.use(passport.session());
 
 passport.use(
