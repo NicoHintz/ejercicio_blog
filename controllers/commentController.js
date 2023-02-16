@@ -6,6 +6,7 @@ async function getComments(req, res) {
 }
 
 async function createComment(req, res) {
+  console.log(req.user);
   if (!req.user) {
     const user = await User.findOne({ where: { firstname: req.body.firstname } });
     let articleNumber = req.params.id;
