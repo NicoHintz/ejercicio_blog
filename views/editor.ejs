@@ -16,8 +16,8 @@
     <%- include("partials/nav") %>
     <div class="container">
       <div class="title d-flex justify-content-between">
-        <h1>Mis Artículos</h1>
-        <a href="/writer/crear" class="btn btn-success mt-3">Nuevo</a>
+        <h1>Listado de Artículos EDITOR</h1>
+        <a href="/admin/crear" class="btn btn-success mt-3">Nuevo</a>
         <link rel="stylesheet" href="styles.css" />
       </div>
       <table class="table table1">
@@ -33,7 +33,7 @@
           </tr>
         </thead>
         <tbody id="tableBody">
-          <% articles.forEach((element) => { %> <% if (element.userId === user.id){%>
+          <% articles.forEach((element) => { %>
           <tr class="users">
             <td><%= element.id %></td>
             <td><%= element.title %></td>
@@ -53,13 +53,15 @@
             <td><%= element.createdAt %></td>
             <td><%= element.user.firstname %> <%= element.user.lastname %></td>
             <td>
-              <a href="/writer/editar/<%=element.id%>" class="btn btn-primary m-1">Editar</a
-              ><a href="/writer/eliminar/<%=element.id%>" class="btn btn btn-danger m-1">
+              <a href="/editor/editar/<%=element.id%>" class="btn btn-primary m-1">Editar</a>
+              <% if(element.user.id === user.id){ %>
+              <a href="/editor/eliminar/<%=element.id%>" class="btn btn btn-danger m-1">
                 Eliminar
               </a>
+              <% } %>
             </td>
           </tr>
-          <%}%> <% }) %>
+          <% }) %>
         </tbody>
       </table>
     </div>

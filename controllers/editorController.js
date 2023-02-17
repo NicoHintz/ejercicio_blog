@@ -57,10 +57,13 @@ async function editArticle(req, res) {
 }
 
 async function deleteArticle(req, res) {
-  const deleteArticle = await Article.destroy({
-    where: { id: req.params.id },
-  });
-  return res.redirect("/writer");
+  const article = await Article.findByPk(req.params.id);
+  if (req.user.id === article.userId) {
+    const deleteArticle = await Article.destroy({
+      where: { id: req.params.id },
+    });
+  }
+  return res.redirect("/editor");
 }
 
 module.exports = {
