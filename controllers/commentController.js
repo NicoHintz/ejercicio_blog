@@ -6,26 +6,14 @@ async function getComments(req, res) {
 }
 
 async function createComment(req, res) {
-  console.log(req.user);
-  if (!req.user) {
-    const user = await User.findOne({ where: { firstname: req.body.firstname } });
-    let articleNumber = req.params.id;
-    const newComment = await Comment.create({
-      content: `${req.body.content}`,
-      articleId: `${req.params.id}`,
-      author: `${req.body.firstname}`,
-    });
-    return res.redirect(`/articulo/${articleNumber}`);
-  } else {
-    const user = await User.findOne({ where: { firstname: req.body.firstname } });
-    let articleNumber = req.params.id;
-    const newComment = await Comment.create({
-      content: `${req.body.content}`,
-      articleId: `${req.params.id}`,
-      userId: req.user.id,
-    });
-    return res.redirect(`/articulo/${articleNumber}`);
-  }
+  console.log("createComment Controller");
+  let articleNumber = req.params.id;
+  const newComment = await Comment.create({
+    content: `${req.body.content}`,
+    articleId: `${req.params.id}`,
+    userId: req.user.id,
+  });
+  return res.redirect(`/articulo/${articleNumber}`);
 }
 
 module.exports = { getComments, createComment };

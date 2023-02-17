@@ -16,53 +16,48 @@
     <%- include("partials/nav") %>
     <div class="hero">
       <div class="px-4 py-5 hero-text">
-        <h1><%= article.title %></h1>
-        <p>Created by</p>
-        <p><%= article.user.firstname %> <%= article.user.lastname %></p>
+        <h1 class="mb-3"><%= article.title %></h1>
+        <p class="fst-italic mt-3 mb-2">Escrito por</p>
+        <p class="fst-italic"><%= article.user.firstname %> <%= article.user.lastname %></p>
       </div>
     </div>
-    <div class="container">
-      <p><%= article.content %></p>
-      <hr />
+    <div class="container mb-5">
+      <p class="lead mt-5"><%= article.content %></p>
     </div>
     <% if(!user) {} else { %>
     <div class="container">
       <form method="post" action="/articulo/<%= articleNumber%>">
         <div class="mb-3">
-          <label for="firstname" class="form-label">Name</label>
-          <input
-            type="text"
-            name="firstname"
+          <label for="content" class="form-label mb-3">Dejanos un comentario 💌</label>
+          <textarea
             class="form-control"
-            id="firstname"
-            placeholder="Ingresar nombre"
-          />
+            placeholder="Comentario..."
+            id="content"
+            rows="3"
+            name="content"
+          ></textarea>
         </div>
-        <div class="mb-3">
-          <label for="content" class="form-label">Contenido</label>
-          <textarea class="form-control" id="content" rows="3" name="content"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Send</button>
+        <button type="submit" class="btn btn-primary">Enviar</button>
       </form>
     </div>
     <%}%>
     <div class="container" style="z-index: 0">
       <% let commentCounter = 0 %> <% comments.forEach((element) => { %> <% commentCounter++ %> <%
       }) %>
-      <h2 class="mt-4">Comments(<%= commentCounter %>)</h2>
-      <hr />
+      <h3 class="mt-5 mb-4">Comentarios(<%= commentCounter %>)</h3>
     </div>
 
     <div class="container">
       <% comments.reverse() %> <% comments.forEach((element) => { %>
-      <p><%= element.content %></p>
-      <% if (!element.user){%>
-      <p>by <%= element.author %></p>
-      <hr />
-      <% } else { %>
-      <p>by <%= element.user.username %></p>
-      <hr />
-      <% } %> <% }) %>
+      <div class="card mb-4 shadow-sm border-light p-3 bg-body rounded">
+        <div class="card-body border-0 p-2">
+          <p class="lh-2"><%= element.content %></p>
+          <p class="fst-italic fw-bolder" style="font-size: 0.85rem">
+            <%= element.user.username %>
+          </p>
+        </div>
+      </div>
+      <% }) %>
     </div>
 
     <div><%- include("partials/footer") %></div>
