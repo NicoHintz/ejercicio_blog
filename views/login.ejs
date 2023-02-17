@@ -4,22 +4,40 @@
   integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
   crossorigin="anonymous"
 />
-<form class="container mt-4" action="/login" method="post">
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">User name</label>
-    <input
-      type="text"
-      class="form-control"
-      id="username"
-      name="username"
-      aria-describedby="emailHelp"
-    />
-    <div id="emailHelp" class="form-text">We'll never share your credentials with anyone else.</div>
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Password</label>
-    <input type="password" class="form-control" id="password" name="password" />
-  </div>
+<form
+  class="container mt-4 d-flex justify-content-center align-items-center vh-100"
+  action="/login"
+  method="post"
+>
+  <div class="card mb-4 shadow border-light p-3 bg-body rounded w-50">
+    <div class="card-body border-0 p-4">
+      <div class="mb-3">
+        <h1 class="text-center mb-5">Iniciar sesión</h1>
+        <label for="exampleInputEmail1" class="form-label">Usuario</label>
+        <input
+          type="text"
+          class="form-control"
+          id="username"
+          name="username"
+          aria-describedby="emailHelp"
+          placeholder="pPicasso"
+        />
 
-  <button type="submit" class="btn btn-primary">Login</button>
+        <div class="mb-5 mt-3">
+          <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            name="password"
+            placeholder="1234"
+          />
+        </div>
+      </div>
+      <div class="d-grid gap-2 mt-3">
+        <button type="submit" class="btn btn-Success">Login</button>
+        <a href="/" class="btn btn-secondary">Volver</a>
+      </div>
+    </div>
+  </div>
 </form>
