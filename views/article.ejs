@@ -71,6 +71,24 @@
             <p class="fst-italic fw-bolder" style="font-size: 0.85rem">
               <%= element.user.username %>
             </p>
+            <% if(!user) {} else if(user.roleId >= 3){%>
+            <a
+              href="/deleteComment"
+              class="btn btn-primary"
+              style="margin-left: auto"
+              type="submit"
+            >
+              Editar
+            </a>
+            <a
+              href="/comentario/eliminar/<%=element.id%>"
+              class="btn btn-danger"
+              style="margin-left: auto"
+              type="submit"
+            >
+              Borrar
+            </a>
+            <%}%>
           </div>
         </div>
         <% }) %>

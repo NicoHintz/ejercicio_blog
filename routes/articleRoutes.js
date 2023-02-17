@@ -46,7 +46,11 @@ router.post("/editor", editorController.createArticle);
 router.get("/editor/editar/:id", editorController.editForm);
 router.post("/editor/editar/:id", editorController.editArticle);
 router.get("/editor/eliminar/:id", isAuthenticatedEditor, editorController.deleteArticle);
+router.post("/articulo/editar/:id", editorController.editComment);
+router.get("/comentario/eliminar/:id", isAuthenticatedEditor, editorController.deleteComment);
 // CRUD EDITOR //
+
+//
 
 router.get("/users", userController.getUsers);
 

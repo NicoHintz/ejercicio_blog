@@ -66,6 +66,40 @@ async function deleteArticle(req, res) {
   return res.redirect("/editor");
 }
 
+// COMMMENTS --------------------------------------
+
+async function editComment(req, res) {
+  const form = formidable({
+    multiples: true,
+    uploadDir: __dirname + "/../public/img",
+    keepExtensions: true,
+  });
+  form.parse(req, async (err, fields, files) => {
+    const newArticle = await Article.update(
+      {
+        title: fields.title,
+        content: fields.content,
+        image: files.image.newFilename,
+        userId: req.user.id,
+      },
+      { where: { id: req.params.id } },
+    );
+    return res.redirect("/writer");
+  });
+}
+
+async function deleteComment(req, res) {
+  // Receive comment id from button
+  console.log("XXXXXXXXXXXXXXX   ", req.params);
+  const comment = await Comment.findByPk(req.params.id);
+  const deleteComment = await Comment.destroy({
+    where: { id: req.params.id },
+  });
+  return res.redirect(`/`);
+  // return res.redirect(`/article/${req.params.articleId}`);
+  // articulo/${req.params.id}
+}
+
 module.exports = {
   indexEditor,
   createForm,
@@ -73,4 +107,6 @@ module.exports = {
   editForm,
   editArticle,
   deleteArticle,
+  editComment,
+  deleteComment,
 };
