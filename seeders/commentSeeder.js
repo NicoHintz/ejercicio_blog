@@ -5,7 +5,7 @@ module.exports = async () => {
   const comments = [];
   for (let i = 0; i < 30; i++) {
     comments.push({
-      content: faker.lorem.paragraphs(5),
+      content: faker.lorem.paragraphs(1),
       articleId: faker.datatype.number({ min: 1, max: 9 }),
       userId: faker.datatype.number({ min: 1, max: 4 }),
     });
