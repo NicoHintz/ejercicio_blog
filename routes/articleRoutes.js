@@ -5,12 +5,8 @@ const commentController = require("../controllers/commentController");
 const userController = require("../controllers/userController");
 const loginController = require("../controllers/loginController");
 const writerController = require("../controllers/writerController");
-const {
-  isAuthenticated,
-  commentAuthenticate,
-  isAuthenticatedAdmin,
-} = require("../middlewares/isAuthenticated");
-
+const { isAuthenticated, commentAuthenticate } = require("../middlewares/isAuthenticated");
+const { isAuthenticatedAdmin } = require("../middlewares/isAuthenticatedAdmin");
 const makeUserAvailableInViews = require("../middlewares/makeUserAvailableInViews");
 
 router.get("/login", loginController.loginIndex);
