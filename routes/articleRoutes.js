@@ -5,8 +5,12 @@ const commentController = require("../controllers/commentController");
 const userController = require("../controllers/userController");
 const loginController = require("../controllers/loginController");
 const writerController = require("../controllers/writerController");
-const { isAuthenticated } = require("../middlewares/isAuthenticated");
-const { commentAuthenticate } = require("../middlewares/isAuthenticated");
+const {
+  isAuthenticated,
+  commentAuthenticate,
+  isAuthenticatedAdmin,
+} = require("../middlewares/isAuthenticated");
+
 const makeUserAvailableInViews = require("../middlewares/makeUserAvailableInViews");
 
 router.get("/login", loginController.loginIndex);
@@ -20,12 +24,12 @@ router.post("/articulo/:id", commentAuthenticate, commentController.createCommen
 //AUTH COMMENTS
 
 // CRUD ADMIN //
-router.get("/admin", isAuthenticated, mainController.indexAdmin);
-router.get("/admin/crear", isAuthenticated, mainController.createForm);
+router.get("/admin", isAuthenticatedAdmin, mainController.indexAdmin);
+router.get("/admin/crear", isAuthenticatedAdmin, mainController.createForm);
 router.post("/admin", mainController.createArticle);
-router.get("/admin/editar/:id", mainController.editForm);
-router.post("/admin/editar/:id", mainController.editArticle);
-router.get("/admin/eliminar/:id", mainController.deleteArticle);
+router.get("/admin/editar/:id", isAuthenticatedAdmin, mainController.editForm);
+router.post("/admin/editar/:id", isAuthenticatedAdmin, mainController.editArticle);
+router.get("/admin/eliminar/:id", isAuthenticatedAdmin, mainController.deleteArticle);
 // CRUD ADMIN //
 
 // CRUD WRITER //

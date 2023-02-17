@@ -10,7 +10,7 @@ async function indexWriter(req, res) {
 
 async function createForm(req, res) {
   const articles = await Article.findAll();
-  return res.render("crear");
+  return res.render("createWriter");
 }
 
 async function createArticle(req, res) {
@@ -27,8 +27,7 @@ async function createArticle(req, res) {
       image: files.image.newFilename,
       userId: req.user.id,
     });
-
-    return res.redirect("/admin");
+    return res.redirect("/writer");
   });
 }
 
