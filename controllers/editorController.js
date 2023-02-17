@@ -89,15 +89,11 @@ async function editComment(req, res) {
 }
 
 async function deleteComment(req, res) {
-  // Receive comment id from button
-  console.log("XXXXXXXXXXXXXXX   ", req.params);
   const comment = await Comment.findByPk(req.params.id);
   const deleteComment = await Comment.destroy({
     where: { id: req.params.id },
   });
-  return res.redirect(`/`);
-  // return res.redirect(`/article/${req.params.articleId}`);
-  // articulo/${req.params.id}
+  return res.redirect(`/articulo/${req.query.articleId}`);
 }
 
 module.exports = {
