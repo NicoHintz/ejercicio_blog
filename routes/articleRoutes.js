@@ -35,7 +35,16 @@ router.post("/writer", writerController.createArticle);
 router.get("/writer/editar/:id", writerController.editForm);
 router.post("/writer/editar/:id", writerController.editArticle);
 router.get("/writer/eliminar/:id", writerController.deleteArticle);
-// CRUD ADMIN //
+// CRUD WRITER //
+
+// CRUD EDITOR //
+router.get("/editor", isAuthenticated, writerController.indexWriter);
+router.get("/editor/crear", isAuthenticated, writerController.createForm);
+router.post("/editor", writerController.createArticle);
+router.get("/editor/editar/:id", writerController.editForm);
+router.post("/editor/editar/:id", writerController.editArticle);
+router.get("/editor/eliminar/:id", writerController.deleteArticle);
+// CRUD EDITOR //
 
 router.get("/users", userController.getUsers);
 
