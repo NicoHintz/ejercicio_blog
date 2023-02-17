@@ -1,4 +1,3 @@
-const { Sequelize } = require("sequelize");
 const { Article, User, Comment } = require("../models");
 const formidable = require("formidable");
 
@@ -48,11 +47,10 @@ async function editArticle(req, res) {
         title: fields.title,
         content: fields.content,
         image: files.image.newFilename,
-        userId: req.user.id,
       },
       { where: { id: req.params.id } },
     );
-    return res.redirect("/writer");
+    return res.redirect("/editor");
   });
 }
 
