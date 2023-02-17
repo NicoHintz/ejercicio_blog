@@ -26,3 +26,31 @@ footer {
   margin-bottom: 0 !important;
   background-color: black;
 }
+
+.custom-shape-divider-bottom-1676608609 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1676608609 svg {
+  position: relative;
+  display: block;
+  width: calc(176% + 1.3px);
+  height: 41px;
+  transform: rotateY(180deg);
+}
+
+.custom-shape-divider-bottom-1676608609 .shape-fill {
+  fill: #e0ebd6;
+}
+
+.comment-section {
+  background-color: #e0ebd6;
+  padding-bottom: 3rem;
+  padding-top: 1rem;
+}
