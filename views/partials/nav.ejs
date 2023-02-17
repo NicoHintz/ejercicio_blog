@@ -20,14 +20,18 @@
           </a>
 
           <% if(!user) {} else if(user.roleId === 4){%>
-          <a href="/admin" class="btn btn-primary" style="margin-left: auto" type="submit">
+          <a href="/admin" class="btn btn-danger" style="margin-left: auto" type="submit">
             Admin
           </a>
           <%}else if(user.roleId > 1) {%>
-          <a href="/writer" class="btn btn-primary" style="margin-left: auto" type="submit">
+          <a href="/writer" class="btn btn-warning me-2" style="margin-left: auto" type="submit">
             Mis articulos
           </a>
-          <%}%>
+          <%if(user.roleId >= 3){ %>
+          <a href="/editor" class="btn btn-primary" style="margin-left: auto" type="submit">
+            Editor
+          </a>
+          <%} %> <%}%>
         </div>
       </div>
     </div>
