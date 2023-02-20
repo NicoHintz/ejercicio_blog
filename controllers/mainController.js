@@ -74,6 +74,11 @@ async function deleteArticle(req, res) {
   return res.redirect("/admin");
 }
 
+async function apiIndex(req, res) {
+  const articles = await Article.findAll({ include: User });
+  return res.json(articles);
+}
+
 module.exports = {
   index,
   selectArticle,
@@ -83,4 +88,5 @@ module.exports = {
   editForm,
   editArticle,
   deleteArticle,
+  apiIndex,
 };

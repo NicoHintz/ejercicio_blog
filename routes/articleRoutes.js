@@ -51,7 +51,9 @@ router.get("/comentario/eliminar/:id", isAuthenticatedEditor, editorController.d
 router.post("/comentario/editar/:id", isAuthenticatedEditor, editorController.editComment);
 // CRUD EDITOR //
 
-//
+//API//
+router.get("/api/articulos", isAuthenticated, mainController.apiIndex);
+//API//
 
 router.get("/users", userController.getUsers);
 
