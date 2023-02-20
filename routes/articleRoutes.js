@@ -6,6 +6,7 @@ const userController = require("../controllers/userController");
 const loginController = require("../controllers/loginController");
 const writerController = require("../controllers/writerController");
 const editorController = require("../controllers/editorController");
+const apiController = require("../controllers/apiController");
 const { isAuthenticated, commentAuthenticate } = require("../middlewares/isAuthenticated");
 const { isAuthenticatedAdmin } = require("../middlewares/isAuthenticatedAdmin");
 const { isAuthenticatedEditor } = require("../middlewares/isAuthenticatedEditor");
@@ -52,7 +53,10 @@ router.post("/comentario/editar/:id", isAuthenticatedEditor, editorController.ed
 // CRUD EDITOR //
 
 //API//
-router.get("/api/articulos", isAuthenticated, mainController.apiIndex);
+router.get("/api/articulos", apiController.apiIndex);
+router.delete("/api/articulos/:id", apiController.apiDeleteArticle);
+router.post("/api/articulos/", apiController.apiCreateArticle);
+router.patch("/api/articulos/:id", apiController.apiEditArticle);
 //API//
 
 router.get("/users", userController.getUsers);
