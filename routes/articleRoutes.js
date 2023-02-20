@@ -48,6 +48,7 @@ router.post("/editor/editar/:id", editorController.editArticle);
 router.get("/editor/eliminar/:id", isAuthenticatedEditor, editorController.deleteArticle);
 router.post("/articulo/editar/:id", editorController.editComment);
 router.get("/comentario/eliminar/:id", isAuthenticatedEditor, editorController.deleteComment);
+router.post("/comentario/editar/:id", isAuthenticatedEditor, editorController.editComment);
 // CRUD EDITOR //
 
 //

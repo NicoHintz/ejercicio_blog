@@ -67,23 +67,14 @@ async function deleteArticle(req, res) {
 // COMMMENTS --------------------------------------
 
 async function editComment(req, res) {
-  const form = formidable({
-    multiples: true,
-    uploadDir: __dirname + "/../public/img",
-    keepExtensions: true,
-  });
-  form.parse(req, async (err, fields, files) => {
-    const newArticle = await Article.update(
-      {
-        title: fields.title,
-        content: fields.content,
-        image: files.image.newFilename,
-        userId: req.user.id,
-      },
-      { where: { id: req.params.id } },
-    );
-    return res.redirect("/writer");
-  });
+  const comment = await Comment.findByPk(req.params.id);
+  const updateComment = await Comment.update(
+    {
+      content: req.body.commentcontent,
+    },
+    { where: { id: req.params.id } },
+  );
+  return res.redirect(`/articulo/${comment.articleId}`);
 }
 
 async function deleteComment(req, res) {
