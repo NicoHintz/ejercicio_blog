@@ -2,6 +2,7 @@ const { Sequelize, Op } = require("sequelize");
 const { Article, User, Comment } = require("../models");
 const formidable = require("formidable");
 const express = require("express");
+const jwt = require("jsonwebtoken");
 
 async function apiIndex(req, res) {
   const filter = Object.entries(req.query);
@@ -60,9 +61,23 @@ async function apiEditArticle(req, res) {
   return res.json(articles);
 }
 
+async function tokens(req, res) {
+  console.log(req.body.password);
+  const user = await User.findOne({ where: { email: req.body.email } });
+  if (user) {
+    const match = await user.isValidPassword(req.body.password);
+    if (match) {
+      const token = jwt.sign({ sub: user.id }, process.env.JWT_SECRET);
+      return res.json({ token: token });
+    }
+  }
+  return res.send("hola");
+}
+
 module.exports = {
   apiIndex,
   apiDeleteArticle,
   apiCreateArticle,
   apiEditArticle,
+  tokens,
 };

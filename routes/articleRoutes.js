@@ -7,6 +7,8 @@ const loginController = require("../controllers/loginController");
 const writerController = require("../controllers/writerController");
 const editorController = require("../controllers/editorController");
 const apiController = require("../controllers/apiController");
+const jwt = require("jsonwebtoken");
+const { expressjwt: checkJwt } = require("express-jwt");
 const { isAuthenticated, commentAuthenticate } = require("../middlewares/isAuthenticated");
 const { isAuthenticatedAdmin } = require("../middlewares/isAuthenticatedAdmin");
 const { isAuthenticatedEditor } = require("../middlewares/isAuthenticatedEditor");
@@ -53,10 +55,34 @@ router.post("/comentario/editar/:id", isAuthenticatedEditor, editorController.ed
 // CRUD EDITOR //
 
 //API//
-router.get("/api/articulos", apiController.apiIndex);
-router.delete("/api/articulos/:id", apiController.apiDeleteArticle);
-router.post("/api/articulos/", apiController.apiCreateArticle);
-router.patch("/api/articulos/:id", apiController.apiEditArticle);
+router.post("/api/tokens", apiController.tokens);
+
+router.get(
+  "/api/articulos",
+  checkJwt({ secret: "UnStringMuySecreto", algorithms: ["HS256"] }),
+  apiController.apiIndex,
+);
+router.post(
+  "/api/articulos",
+  checkJwt({ secret: "UnStringMuySecreto", algorithms: ["HS256"] }),
+  apiController.apiIndex,
+);
+
+router.delete(
+  "/api/articulos/:id",
+  checkJwt({ secret: "UnStringMuySecreto", algorithms: ["HS256"] }),
+  apiController.apiDeleteArticle,
+);
+router.post(
+  "/api/articulos/",
+  checkJwt({ secret: "UnStringMuySecreto", algorithms: ["HS256"] }),
+  apiController.apiCreateArticle,
+);
+router.patch(
+  "/api/articulos/:id",
+  checkJwt({ secret: "UnStringMuySecreto", algorithms: ["HS256"] }),
+  apiController.apiEditArticle,
+);
 //API//
 
 router.get("/users", userController.getUsers);

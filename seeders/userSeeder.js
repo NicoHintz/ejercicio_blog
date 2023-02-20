@@ -9,7 +9,7 @@ module.exports = async function userSeeder() {
     {
       firstname: "Pablo",
       lastname: "Picasso",
-      email: faker.internet.email(),
+      email: "ppicasso@gmail.com",
       username: "pPicasso",
       password: await bcrypt.hash("1234", 8),
       roleId: 4,
