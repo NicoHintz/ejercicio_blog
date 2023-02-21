@@ -5,8 +5,16 @@ const express = require("express");
 const jwt = require("jsonwebtoken");
 
 async function apiIndex(req, res) {
-  const filter = Object.entries(req.query);
+  //   const filter = Object.entries(req.query);
+  //   console.log(filter == undefined);
+  //   console.log(filter == null);
+  //   console.log(!filter);
+  //   console.log(filter === []);
   let results = null;
+  if (!filter) {
+    results = await Article.findAll({ include: User });
+    return res.json(results);
+  }
   switch (filter[0][0]) {
     case "searchbytitle":
       results = await Article.findAll({

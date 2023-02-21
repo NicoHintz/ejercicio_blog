@@ -7,7 +7,6 @@ const loginController = require("../controllers/loginController");
 const writerController = require("../controllers/writerController");
 const editorController = require("../controllers/editorController");
 const apiController = require("../controllers/apiController");
-const jwt = require("jsonwebtoken");
 const { expressjwt: checkJwt } = require("express-jwt");
 const { isAuthenticated, commentAuthenticate } = require("../middlewares/isAuthenticated");
 const { isAuthenticatedAdmin } = require("../middlewares/isAuthenticatedAdmin");
@@ -59,28 +58,28 @@ router.post("/api/tokens", apiController.tokens);
 
 router.get(
   "/api/articulos",
-  checkJwt({ secret: "UnStringMuySecreto", algorithms: ["HS256"] }),
+  checkJwt({ secret: process.env.JWT_SECRET, algorithms: ["HS256"] }),
   apiController.apiIndex,
 );
 router.post(
   "/api/articulos",
-  checkJwt({ secret: "UnStringMuySecreto", algorithms: ["HS256"] }),
+  checkJwt({ secret: process.env.JWT_SECRET, algorithms: ["HS256"] }),
   apiController.apiIndex,
 );
 
 router.delete(
   "/api/articulos/:id",
-  checkJwt({ secret: "UnStringMuySecreto", algorithms: ["HS256"] }),
+  checkJwt({ secret: process.env.JWT_SECRET, algorithms: ["HS256"] }),
   apiController.apiDeleteArticle,
 );
 router.post(
   "/api/articulos/",
-  checkJwt({ secret: "UnStringMuySecreto", algorithms: ["HS256"] }),
+  checkJwt({ secret: process.env.JWT_SECRET, algorithms: ["HS256"] }),
   apiController.apiCreateArticle,
 );
 router.patch(
   "/api/articulos/:id",
-  checkJwt({ secret: "UnStringMuySecreto", algorithms: ["HS256"] }),
+  checkJwt({ secret: process.env.JWT_SECRET, algorithms: ["HS256"] }),
   apiController.apiEditArticle,
 );
 //API//
